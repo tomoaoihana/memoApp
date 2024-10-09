@@ -42,8 +42,8 @@ const Index = (): JSX.Element => {
         </View>
       </View>
 
-      <View>
-        <Text>+</Text>
+      <View style={styles.circleBtn}>
+        <Text style={styles.circleBtnLabel}>+</Text>
       </View>
     </View>
   );
@@ -94,6 +94,27 @@ const styles = StyleSheet.create({
     fontSize: 12,
     lineHeight: 16,
     color: "#848484",
+  },
+  circleBtn: {
+    width: 64,
+    height: 64,
+    borderRadius: 32,
+    backgroundColor: "#265366",
+    justifyContent: "center",
+    alignItems: "center",
+    position: "absolute",
+    right: 40,
+    bottom: 40,
+    shadowColor: "#000",
+    shadowOffset: { width: 0, height: 8 },
+    shadowOpacity: 0.25,
+    shadowRadius: 8,
+    elevation: 8,
+  },
+  circleBtnLabel: {
+    color: "#fff",
+    fontSize: 40,
+    lineHeight: 48,
   },
 });
 
