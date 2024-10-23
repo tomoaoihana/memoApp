@@ -1,0 +1,12 @@
+##TouchableOpacity
+・ビューがタッチに適切に反応するためのラッパー
+・タッチできる
+・pressableもあるよーーーーー
+・onPressIn, onPressOut, onPress, onLongPress
+・onPressIn: タッチが開始されたときに呼び出される
+・onPressOut: タッチが終了したときに呼び出される
+・onPress: タッチが終了したときに呼び出される
+・onLongPress: タッチが一定時間続いたときに呼び出される
+
+
+
