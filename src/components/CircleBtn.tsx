@@ -1,13 +1,14 @@
-import { View, Text, StyleSheet } from "react-native";
+import { View, Text, StyleSheet, type ViewStyle } from "react-native";
 
 interface Props {
-  children: string;
+  children: JSX.Element;
+  style?: ViewStyle;
 }
 
 const circleBtn = (props: Props): JSX.Element => {
-  const { children } = props;
+  const { children, style } = props;
   return (
-    <View style={styles.circleBtn}>
+    <View style={[styles.circleBtn, style]}>
       <Text style={styles.circleBtnLabel}>{children}</Text>
     </View>
   );
