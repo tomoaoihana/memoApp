@@ -10,3 +10,14 @@
 
 
 
+##asChild
+
+ <Link href="/auth/sign_up" asChild>
+  <TouchableOpacity>
+    <Text style={styles.footerLink}>sign up here!</Text>
+  </TouchableOpacity>
+  </Link>
+
+   他の要素をラップすることができる
+    この場合、TouchableOpacityがラップされている
+    入れ子になっているので、TouchableOpacityがタッチされたときに、Linkがタッチされる
