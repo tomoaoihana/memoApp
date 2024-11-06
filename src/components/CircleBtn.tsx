@@ -8,12 +8,13 @@ import {
 interface Props {
   children: JSX.Element;
   style?: ViewStyle;
+  onPress?: () => void;
 }
 
 const circleBtn = (props: Props): JSX.Element => {
-  const { children, style } = props;
+  const { children, style, onPress } = props;
   return (
-    <TouchableOpacity style={[styles.circleBtn, style]}>
+    <TouchableOpacity style={[styles.circleBtn, style]} onPress={onPress}>
       <Text style={styles.circleBtnLabel}>{children}</Text>
     </TouchableOpacity>
   );
