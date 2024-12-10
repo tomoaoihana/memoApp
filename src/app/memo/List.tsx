@@ -14,6 +14,8 @@ const handlePress = (): void => {
 
 const List = (): JSX.Element => {
   const navigation = useNavigation();
+
+  //副作用フック
   useEffect(() => {
     navigation.setOptions({
       headerRight: () => {
