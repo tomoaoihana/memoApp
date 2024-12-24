@@ -4,14 +4,29 @@ import {
   StyleSheet,
   TextInput,
   TouchableOpacity,
+  Alert,
 } from "react-native";
 import { Link, router } from "expo-router";
 import { useState } from "react";
 import Button from "../../components/btn";
 
-const handlePress = (): void => {
-  //ログインボタンを押した時の処理
-  router.replace("/memo/List");
+import { signInWithEmailAndPassword } from "firebase/auth";
+import { auth } from "../../config";
+
+const handlePress = async (email: string, password: string): Promise<void> => {
+  try {
+    const userCredential = await signInWithEmailAndPassword(
+      auth,
+      email,
+      password
+    );
+    //ログインボタンを押した時の処理
+    console.log(userCredential.user.uid);
+    router.replace("/memo/List");
+  } catch (error) {
+    console.log(error);
+    Alert.alert("エラー", "メールアドレスまたはパスワードが違います");
+  }
 };
 
 const LogIn = (): JSX.Element => {
@@ -44,10 +59,15 @@ const LogIn = (): JSX.Element => {
           placeholder="Password"
           textContentType="password"
         />
-        <Button label="ログイン" onPress={handlePress} />
+        <Button
+          label="ログイン"
+          onPress={() => {
+            handlePress(email, password);
+          }}
+        />
         <View style={styles.footer}>
           <Text style={styles.footerText}>Not registered?</Text>
-          <Link href="/auth/sign_up" asChild>
+          <Link href="/auth/sign_up" asChild replace>
             <TouchableOpacity>
               <Text style={styles.footerLink}>sign up here!</Text>
             </TouchableOpacity>

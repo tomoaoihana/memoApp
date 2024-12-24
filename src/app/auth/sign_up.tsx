@@ -1,6 +1,7 @@
 import {
   View,
   Text,
+  Alert,
   StyleSheet,
   TextInput,
   TouchableOpacity,
@@ -23,9 +24,12 @@ const handlePress = async (email: string, password: string): Promise<void> => {
       password
     );
     console.log(userCredential.user.uid);
-    router.push("/memo/List");
+    router.replace("/memo/List");
   } catch (error) {
-    console.error(error);
+    const { code, message } = error as { code: string; message: string };
+    console.log(code, message);
+
+    Alert.alert("エラー", message);
   }
 };
 
@@ -66,7 +70,7 @@ const SignUp = (): JSX.Element => {
         />
         <View style={styles.footer}>
           <Text style={styles.footerText}>Already registered?</Text>
-          <Link href="/auth/log_in" asChild>
+          <Link href="/auth/log_in" asChild replace>
             <TouchableOpacity>
               <Text style={styles.footerLink}>Log in.</Text>
             </TouchableOpacity>
