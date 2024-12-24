@@ -9,10 +9,24 @@ import {
 import { Link, router } from "expo-router";
 import Button from "../../components/btn";
 import { useState } from "react";
+import { createUserWithEmailAndPassword } from "firebase/auth";
 
-const handlePress = (): void => {
+import { auth } from "../../config";
+
+const handlePress = async (email: string, password: string): Promise<void> => {
   //サインあっぷを押した時の処理
-  router.push("/memo/List");
+  // console.log(email, password);
+  try {
+    const userCredential = await createUserWithEmailAndPassword(
+      auth,
+      email,
+      password
+    );
+    console.log(userCredential.user.uid);
+    router.push("/memo/List");
+  } catch (error) {
+    console.error(error);
+  }
 };
 
 const SignUp = (): JSX.Element => {
@@ -44,7 +58,12 @@ const SignUp = (): JSX.Element => {
           placeholder="Password"
           textContentType="password"
         />
-        <Button label="サインアップ" onPress={handlePress} />
+        <Button
+          label="サインアップ"
+          onPress={() => {
+            handlePress(email, password);
+          }}
+        />
         <View style={styles.footer}>
           <Text style={styles.footerText}>Already registered?</Text>
           <Link href="/auth/log_in" asChild>
